@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zero Rupees Digital Product Journey (India)</title>
+<style>
+:root{--bg:#f6f2e9;--fg:#26342c;--card:#fff;--mut:#5e6f63;--acc:#35503f;--sage:#9dad95;--soft:#dce5d5;--ex:#35503f;--exfg:#f6f2e9;--sand:#efe3cb;--rust:#b5693a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17241d;--fg:#edebdd;--card:#22362b;--mut:#a9bbae;--acc:#9dad95;--soft:#2b4034;--ex:#0f1a14;--exfg:#edebdd;--sand:#3a3426;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17241d;--fg:#edebdd;--card:#22362b;--mut:#a9bbae;--acc:#9dad95;--soft:#2b4034;--ex:#0f1a14;--exfg:#edebdd;--sand:#3a3426;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16.5px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#app{max-width:680px;margin:0 auto;padding:18px 16px 40px}
+h1,h2,h3,.num{font-family:Georgia,"Times New Roman",serif}
+h1{font-size:1.9rem;line-height:1.15;margin:.2em 0;color:var(--acc)}
+h3{font-size:1.3rem;line-height:1.25;margin:.2em 0 .4em}
+.mut{color:var(--mut);font-size:.92rem}
+.bar{height:12px;border-radius:7px;background:var(--soft);overflow:hidden;margin:10px 0 4px}
+.bar i{display:block;height:100%;background:var(--acc);transition:width .5s}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 2px 6px}
+.tab{flex:none;min-width:46px;height:46px;border:2px solid var(--acc);border-radius:50%;background:transparent;color:var(--fg);font:700 1rem Georgia,serif;cursor:pointer}
+.tab.on{background:var(--acc);color:var(--bg)}
+.tab.done{border-color:var(--sage)}
+.tab:disabled{opacity:.35;cursor:not-allowed}
+.lh{display:flex;align-items:flex-end;gap:14px;margin:18px 0 4px}
+.num{font-size:4.6rem;line-height:.85;color:var(--sage)}
+.lh h2{margin:0;font-size:1.55rem;line-height:1.15;color:var(--acc)}
+.card{background:var(--card);border-left:6px solid var(--acc);border-radius:6px;padding:16px;margin:16px 0}
+.q{font-size:1.1rem;font-weight:600;margin:8px 0}
+.hint{background:var(--soft);padding:11px 13px;font-size:.95rem;margin:10px 0}
+details.ex{background:var(--ex);color:var(--exfg);padding:10px 13px;margin:10px 0}
+details.ex summary{cursor:pointer;font-weight:700}
+details.ex p{margin:8px 0 0;font-size:.95rem}
+.pb{margin:12px 0}
+pre{white-space:pre-wrap;word-break:break-word;background:var(--bg);border:1.5px dashed var(--sage);padding:10px;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:4px 0 6px;text-align:left}
+textarea{width:100%;min-height:150px;border:2px solid var(--acc);border-radius:6px;padding:10px;font:inherit;background:var(--bg);color:var(--fg);resize:vertical;margin-top:8px}
+.b{border:0;background:var(--acc);color:var(--bg);font:700 1rem system-ui,sans-serif;padding:11px 20px;border-radius:30px;cursor:pointer;margin-top:10px}
+.b:disabled{opacity:.4;cursor:not-allowed}
+.b.s{padding:5px 14px;font-size:.85rem;background:transparent;color:var(--acc);border:1.5px solid var(--acc);margin-top:0}
+details.dn{border-left:6px solid var(--sage);background:var(--card);padding:8px 12px;margin:10px 0}
+details.dn summary{cursor:pointer;font-weight:600}
+.ans{white-space:pre-wrap;margin:8px 0 0;color:var(--mut)}
+.lock{color:var(--mut);text-align:center;margin:14px 0}
+.win{text-align:center}
+.warn{background:var(--sand);border-left:6px solid var(--rust);padding:10px 13px;font-size:.92rem;margin:12px 0}
+</style></head><body><div id="app"></div>
+<script>
+const LV=["Your person","Research and gaps","Validate","Build the product","Design and price","Sell","Free traffic","Ads and launch"];
+const IN=["One specific person, one specific problem. That is what sells.","See what is already in the market and what is missing.","Ask before you build. The cheapest insurance there is.","Draft with AI, edit in your own voice, check the facts yourself.","Cover and price: both build trust.","Sales page, payment and delivery. All set up for free.","Reach people without spending money.","Ads come last. First understand when they help and when they hurt."];
+const Q=[
+[0,"Choose your person","Who is the one specific Indian person you will help? Not “students”. Be very specific.","Read Reddit, Quora and YouTube comments. Search your topic in the Meta Ad Library (facebook.com/ads/library, Country: India): when many people run Instagram or Facebook ads for a problem, that hints at interest. The zero-rupee way: only search and read.","Final-year B.Com students in a Tier-2 city who are afraid of their first job interview."],
+[0,"Their 5 monthly problems","Write 5 problems this person faces every month and would pay to solve.","Google autosuggest, YouTube comments, Telegram and WhatsApp groups. Note down their exact words.","How to write a resume, “Tell me about yourself”, fear of the HR call, tracking applications, LinkedIn messages.",["I want to create a digital product for {{q1}} (India). List 10 monthly problems they might pay ₹99 to ₹299 to solve. Rank them by urgency and how common they are, with a one-line reason each."]],
+[0,"Winner problem","Which ONE problem will you solve, and why could it sell within a week?","Pick the one people complain about again and again. Get an honest opinion from AI, but the decision is yours.","",["Which of these problems could sell within a week through Instagram reels? Be honest and tell me which ones to avoid and why."]],
+[1,"Competitors and complaints","Find 3 similar products (title, where it is sold, price) and write 3 complaints that buyers make.","Meta Ad Library (Instagram and Facebook ads, Country: India, search your keyword), Google Ads Transparency Center (adstransparency.google.com, Region: India), Amazon.in bestsellers, Topmate, Etsy. See how many months an ad has been running, but that is not proof, only a hint. 3-star reviews are the most honest. Competition means proof of demand. Write only real complaints.","Generic resume templates exist only in English, there is no interview practice, and nothing is available in a Hindi-friendly format."],
+[1,"Your difference","Write: “For [person] who is struggling with [problem], my [format] is [difference].”","Use your biggest complaint.","",["These are the descriptions of 3 competitors: [paste]. What are buyers asking for that is missing from them? Give me 3 ways to make my product different."]],
+[1,"Niche scorecard","Rate these 5 questions from 1 to 5 and write the total: Pain, Paying ability, Reachability (can you reach them for free?), Competition proof, Your strength.","18 or more out of 25 = move ahead. 14 to 17 = research more. 13 or below = choose another niche. Avoid niches involving health claims, stock tips or legal advice.","Pain 5, Pay 4, Reach 5, Proof 4, Strength 4 = 22. Go."],
+[2,"Ask 10 people","Send a poll or DM to 10 people. How many said “yes” and what did they say? If fewer than 3, what will you change?","Instagram story poll, WhatsApp status, 5 direct DMs, or a Google Form. “Nice idea” is not a sale. “Let me know when it is ready” is a good signal.","Asked 12 people, 4 said “let me know when it is ready, how much will it cost?”. Go."],
+[3,"Format and title","What will you make (ebook, Sheet, template, printable)? Write the working title and size.","Keep your first product small: 15 to 30 pages or one template pack. It does not have to be an ebook.","“Fresher Job Kit” = 25-page PDF + Google Sheet tracker."],
+[3,"Outline","Have AI create an outline and paste the final outline. Cut whatever is not useful.","Do not do everything in one prompt. First the outline, then the chapters. Ask for Indian examples (UPI, local trains, college).","",["Create a detailed outline for this product: {{q8}}. Audience: {{q1}}, problem: {{q3}}. Explain in simple English, like talking to a friend. Give Indian examples."]],
+[3,"Chapter 1 and fact-check","Have AI write Chapter 1, then fact-check it. What did the AI get wrong or say that was risky, and what did you fix?","AI can get numbers, rules and safety information wrong. Confirm with an official source. Add your own examples and voice.","",["Write the whole of Chapter 1 according to the outline. Short paragraphs, simple steps, one quick tip at the end.","Check every tip in this chapter. Flag anything that is wrong, risky or unrealistic and suggest a fix."]],
+[4,"Cover and PDF","What will the cover look like (colours, mood)? Why will it still stand out as a small thumbnail?","Make the PDF with free Canva or Google Docs. Open it on your phone to check. Do not use other people's images, logos or Bollywood posters. Read the licence for Canva's free elements.","",["Suggest a bold ebook cover design for this product: {{q8}}. The title should be readable even in a small thumbnail."]],
+[4,"Price","Write the India price, launch price and regular price (₹).","Starting ideas: ₹49 to ₹99 for an impulse buy, ₹149 to ₹299 for a clear problem. Compare with competitors. Check the platform fee first: if a ₹99 product has a ₹10 fee, you keep ₹89 (assumed).","Launch ₹99 (7 days), regular ₹199.",["I am selling [product] to {{q1}}. Similar products sell for [₹X to ₹Y]. Suggest a starting price, launch price and regular price for an impulse buy, with reasons."]],
+[5,"Sales page","Paste the title, subtitle, short description, “what is inside”, who it is for, and the FAQ.","Write only the truth. Never use fake reviews or sales numbers. Do not guarantee a job or a result.","",["Write the title, subtitle, description, ‘what is inside’, who it is for, and 4 FAQs for my [product]. Simple English. Do not make up fake reviews or sales numbers."]],
+[5,"Platform and delivery","Where will you sell, how will buyers get the file, and what will your refund policy be?","Topmate, Instamojo, Razorpay Payment Pages, Payhip, Gumroad. Check fees, KYC (usually PAN and a bank account) and payout rules yourself. For the first 5 to 10 sales, manual UPI plus a Drive link also works."],
+[6,"Hooks and 14-day plan","Write 5 reel hooks (under 10 words) and a 14-day free posting plan.","For hook ideas, search your keyword in the Meta Ad Library (India, Instagram) and see how the first line of the ads reads. Do not copy, learn the pattern. Post 1 reel or post daily. Instagram, YouTube Shorts, Quora, Telegram. Views may be low in the first 2 weeks, and that is normal.","“A 30-second answer to Tell me about yourself”",["Write 10 Instagram reel hooks for {{q1}} about {{q3}} that stop the scroll within the first 2 seconds. Each hook must be under 10 words, in English."]],
+[7,"Ads: yes or no?","Will you run ads right now or not? Why? Which of the green signals below do you have?","First look at the niche's ads in the Ad Library (Meta and Google): how many people are running ads, which offer and hook, and how many months an ad has been running (spend and sales are not shown). Benefits: fast reach, testing hooks, targeting. Drawbacks: money can go without any sales. Green: some real sales or interest, a clear sales page, knowing the profit on one sale, a test budget you can afford to lose. Red: not validated, borrowed money, a ₹99 product with no upsell. Math (assumed): ₹1000 ad spend, ₹6 per click, 2% conversion, ₹99 product = about ₹703 loss. Free traffic first."],
+[7,"Launch and next product","What is your launch date, where will you post, how will you track sales for 14 days, and what are your next 2 products?","In a Google Sheet: date, post, views, clicks, sales. If no sales come, check: low views = hook, low clicks = offer, clicks but no sales = page or price.","",["Suggest 10 more digital products for {{q1}} that I could make with AI in one day, who would buy them, and what price I should test."]]
+];
+let S={};try{S=JSON.parse(localStorage.getItem("dpi")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("dpi",JSON.stringify(S))}catch(e){}};
+const next=()=>Q.findIndex((_,i)=>!S[i]);
+let view=null;
+const h=(t,a,...c)=>{const e=document.createElement(t);for(const k in a||{}){k==="class"?e.className=a[k]:k.startsWith("on")?e[k]=a[k]:e.setAttribute(k,a[k])}c.flat().filter(x=>x!=null&&x!==false).forEach(x=>e.append(x));return e};
+const fill=p=>p.replace(/\{\{q(\d+)\}\}/g,(m,n)=>S[n-1]?S[n-1].trim():"[your answer to quest "+n+"]");
+function cp(t,b){const ok=()=>{b.textContent="Copied ✓";setTimeout(()=>b.textContent="Copy",1500)};
+const fb=()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(e){}a.remove()};
+try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}}
+function card(i){const q=Q[i];
+const ta=h("textarea",{placeholder:"Write your answer here. Take your time and think it through."});ta.value=S["d"+i]||"";
+const go=h("button",{class:"b",disabled:true,onclick:()=>{S[i]=ta.value.trim();delete S["d"+i];save();render();scrollTo(0,0)}},"Complete quest ✅");
+const cnt=h("div",{class:"mut"});
+const chk=()=>{const l=ta.value.trim().length;go.disabled=l<25;cnt.textContent=l<25?"Write at least 25 characters ("+l+"/25)":"Ready!"};
+ta.oninput=()=>{S["d"+i]=ta.value;save();chk()};chk();
+return h("div",{class:"card"},h("div",{class:"mut"},"Quest "+(i+1)+" of "+Q.length),h("h3",0,q[1]),h("p",{class:"q"},q[2]),h("div",{class:"hint"},"💡 "+q[3]),
+q[4]?h("details",{class:"ex"},h("summary",0,"See an example (for understanding only)"),h("p",0,q[4])):null,
+(q[5]||[]).map(p=>{const t=fill(p);const b=h("button",{class:"b s"},"Copy");b.onclick=()=>cp(t,b);return h("div",{class:"pb"},h("div",{class:"mut"},"🤖 Paste into a free AI tool"),h("pre",0,t),b)}),ta,cnt,go)}
+function win(){const t=Q.map((q,i)=>"Quest "+(i+1)+": "+q[1]+"\n"+S[i]).join("\n\n");
+const b=h("button",{class:"b s"},"Copy");b.onclick=()=>cp(t,b);
+const r=h("button",{class:"b s"},"Reset journey");r.onclick=()=>{if(r.dataset.s){S={};save();view=null;render()}else{r.dataset.s=1;r.textContent="Tap again: everything will be erased"}};
+return h("div",{class:"card win"},h("h3",0,"🏆 Journey complete!"),h("p",0,"You now have a niche, product, price, sales page and launch plan. Start selling now. No sale is ever guaranteed, but you followed the process well."),h("div",{class:"pb"},h("pre",0,t)),b," ",r)}
+function render(){
+const n=next(),done=Q.filter((_,i)=>S[i]).length,cl=n<0?LV.length:Q[n][0];
+if(view===null)view=Math.min(cl,LV.length-1);
+const A=document.getElementById("app");A.textContent="";
+A.append(h("div",{class:"mut"},"India edition · English · All free"),h("h1",0,"Zero Rupees Digital Product Journey"),h("div",{class:"bar"},h("i",{style:"width:"+(done/Q.length*100)+"%"})),h("div",{class:"mut"},"⭐ "+done+" of "+Q.length+" quests complete"),
+h("div",{class:"tabs"},LV.map((v,l)=>h("button",{class:"tab"+(l===view?" on":"")+(l<cl?" done":""),disabled:l>cl,title:v,onclick:()=>{view=l;render()}},l>cl?"🔒":String(l+1).padStart(2,"0")))));
+A.append(h("div",{class:"lh"},h("div",{class:"num"},String(view+1).padStart(2,"0")),h("h2",0,LV[view])),h("p",{class:"mut"},IN[view]));
+Q.forEach((q,i)=>{if(q[0]!==view)return;
+if(S[i])A.append(h("details",{class:"dn"},h("summary",0,"✓ Quest "+(i+1)+": "+q[1]),h("p",{class:"ans"},S[i])));
+else if(i===n)A.append(card(i))});
+const left=n<0?0:Q.filter((q,i)=>q[0]===view&&i>n).length;
+if(left)A.append(h("p",{class:"lock"},"🔒 "+left+" more quest"+(left>1?"s":"")+" will unlock after this one"));
+if(view===LV.length-1)A.append(h("div",{class:"warn"},"This is not a guarantee of any sale. Fees, KYC and tax rules keep changing, so check the official pages."));
+if(view<cl){if(view<LV.length-1)A.append(h("div",{class:"card win"},h("h3",0,"🎉 Level "+(view+1)+" complete!"),h("p",0,"Next: "+LV[view+1]),h("button",{class:"b",onclick:()=>{view++;render();scrollTo(0,0)}},"Go to Level "+(view+2))));else A.append(win())}}
+render();
+</script></body></html>
